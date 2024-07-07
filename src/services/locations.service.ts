@@ -1,20 +1,20 @@
-import { Role } from "../config";
-import { RoleInterface } from "../interfaces";
+import { Locations } from "../config";
+import { LocationsInterface } from "../interfaces";
 
 export const getAll = async () => {
   try {
     //consultas a la base de datos van aca
-    /*const roles = await Role.findAll({
+    /*const locations = await Locations.findAll({
         where: {
           status: true,
         },
       });*/
-    const roles = await Role.findAll();
+    const locations = await Locations.findAll();
     return {
-      message: `C de Rol exitoso`,
+      message: `Consulta de Ubicación exitosa`,
       status: 200,
       data: {
-        roles,
+        locations,
       },
     };
   } catch (error) {
@@ -26,26 +26,23 @@ export const getAll = async () => {
   }
 };
 
-
-
 export const getOne = async (id: number) => {
   try {
-    //consultas a la base de datos van aca
-    const role = await Role.findOne({ where: { id } }); // Busca el proyecto con título 'Mi Título'
-    if (role === null) {
+    const locations = await Locations.findOne({ where: { id } });
+    if (locations === null) {
       console.log("No encontrado");
       return {
-        message: `Role no encontrado`,
+        message: `Ubicación no encontrada`,
         status: 404,
         data: {
         },
       };
     } else {
       return {
-        message: `Role encontrado`,
+        message: `Ubicación encontrada`,
         status: 200,
         data: {
-          role,
+          locations,
         },
       };
     }
@@ -57,19 +54,17 @@ export const getOne = async (id: number) => {
     };
   }
 };
-
-export const create = async (data: RoleInterface) => {
+export const create = async (data: LocationsInterface) => {
   try {
-    //consultas a la base de datos van aca
-    const role = await Role.create({
+    const locations = await Locations.create({
       ...data,
     });
 
     return {
-      message: `Creacion de Rol exitoso`,
+      message: `Creacion de ubicación exitosa`,
       status: 200,
       data: {
-        role,
+        locations,
       },
     };
   } catch (error) {
@@ -81,10 +76,9 @@ export const create = async (data: RoleInterface) => {
   }
 };
 
-export const update = async (id: number, data: RoleInterface) => {
+export const update = async (id: number, data: LocationsInterface) => {
   try {
-    //consultas a la base de datos van aca
-    const role = await Role.update(
+    const locations = await Locations.update(
       {
         ...data,
       },
@@ -97,10 +91,10 @@ export const update = async (id: number, data: RoleInterface) => {
     );
 
     return {
-      message: `Actualización del Rol exitoso`,
+      message: `Actualización de ubicación exitosa`,
       status: 200,
       data: {
-        role,
+        locations,
       },
     };
   } catch (error) {
@@ -111,10 +105,9 @@ export const update = async (id: number, data: RoleInterface) => {
     };
   }
 };
-export const deleted = async (id: number, data: RoleInterface) => {
+export const deleted = async (id: number, data: LocationsInterface) => {
   try {
-    //consultas a la base de datos van aca
-    const role = await Role.update(
+    const locations = await Locations.update(
       {
         status: false,
         deletedAt: new Date(),
@@ -128,10 +121,10 @@ export const deleted = async (id: number, data: RoleInterface) => {
     );
 
     return {
-      message: `Eliminación del Rol exitoso`,
+      message: `Eliminación de ubicación exitosa`,
       status: 200,
       data: {
-        role,
+        locations,
       },
     };
   } catch (error) {
