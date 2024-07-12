@@ -9,3 +9,6 @@ export * from './supplier.model';
 export * from './product_category.model';
 export * from './inventory.model';
 export * from './customer.model';
+export * from './transportation.models';
+export * from './exit_transportation.models';
+export * from './responsible.models';
