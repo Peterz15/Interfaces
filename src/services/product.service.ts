@@ -1,20 +1,20 @@
-import { RoleDB } from "../config";
-import { RoleInterface } from "../interfaces";
+import { ProductDB } from "../config";
+import { ProductInterface } from "../interfaces";
 
 export const getAll = async () => {
   try {
     //consultas a la base de datos van aca
-    /*const roles = await RoleDB.findAll({
+    /*const Products = await ProductDB.findAll({
         where: {
           status: true,
         },
       });*/
-    const roles = await RoleDB.findAll();
+    const products = await ProductDB.findAll();
     return {
-      message: `C de Rol exitoso`,
+      message: `Conexion productos exitoso`,
       status: 200,
       data: {
-        roles,
+        products,
       },
     };
   } catch (error) {
@@ -31,21 +31,21 @@ export const getAll = async () => {
 export const getOne = async (id: number) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.findOne({ where: { id } }); // Busca el proyecto con título 'Mi Título'
-    if (role === null) {
+    const products = await ProductDB.findOne({ where: { id } }); // Busca el proyecto con título 'Mi Título'
+    if (products === null) {
       console.log("No encontrado");
       return {
-        message: `Role no encontrado`,
+        message: `Product no encontrado`,
         status: 404,
         data: {
         },
       };
     } else {
       return {
-        message: `Role encontrado`,
+        message: `Product encontrado`,
         status: 200,
         data: {
-          role,
+          products,
         },
       };
     }
@@ -57,18 +57,18 @@ export const getOne = async (id: number) => {
     };
   }
 };
-export const create = async (data: RoleInterface) => {
+export const create = async (data: ProductInterface) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.create({
+    const products = await ProductDB.create({
       ...data,
     });
 
     return {
-      message: `Creacion de Rol exitoso`,
+      message: `Creacion de Product exitoso`,
       status: 200,
       data: {
-        role,
+        products,
       },
     };
   } catch (error) {
@@ -80,10 +80,10 @@ export const create = async (data: RoleInterface) => {
   }
 };
 
-export const update = async (id: number, data: RoleInterface) => {
+export const update = async (id: number, data: ProductInterface) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.update(
+    const products = await ProductDB.update(
       {
         ...data,
       },
@@ -96,10 +96,10 @@ export const update = async (id: number, data: RoleInterface) => {
     );
 
     return {
-      message: `Actualización del Rol exitoso`,
+      message: `Actualización de Producto exitoso`,
       status: 200,
       data: {
-        role,
+        products,
       },
     };
   } catch (error) {
@@ -110,10 +110,10 @@ export const update = async (id: number, data: RoleInterface) => {
     };
   }
 };
-export const deleted = async (id: number, data: RoleInterface) => {
+export const deleted = async (id: number, data: ProductInterface) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.update(
+    const products = await ProductDB.update(
       {
         status: false,
         deletedAt: new Date(),
@@ -127,13 +127,14 @@ export const deleted = async (id: number, data: RoleInterface) => {
     );
 
     return {
-      message: `Eliminación del Rol exitoso`,
+      message: `Eliminación del producto exitoso`,
       status: 200,
       data: {
-        role,
+        products,
       },
     };
   } catch (error) {
+    console.log(error);
     return {
       message: `Contact the administrator: error`,
       status: 500,

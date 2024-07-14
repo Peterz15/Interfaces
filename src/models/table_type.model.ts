@@ -1,15 +1,14 @@
 import { DataTypes } from "sequelize";
 
-const RoleModel = {
+const TableTypeModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.STRING(25),
-    allowNull: false,
-    unique: true,
+    type: DataTypes.STRING,
+    defaultValue: true,
   },
   deletedAt: {
     type: DataTypes.DATE,
@@ -17,7 +16,7 @@ const RoleModel = {
   status: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
-  }, 
+  },
 };
 
-export { RoleModel };
+export { TableTypeModel };

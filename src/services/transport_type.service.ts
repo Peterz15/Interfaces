@@ -1,20 +1,20 @@
-import { RoleDB } from "../config";
-import { RoleInterface } from "../interfaces";
+import { TransportTypeDB } from "../config";
+import { TransportTypeInterface } from "../interfaces";
 
 export const getAll = async () => {
   try {
     //consultas a la base de datos van aca
-    /*const roles = await RoleDB.findAll({
-        where: {
-          status: true,
-        },
-      });*/
-    const roles = await RoleDB.findAll();
+    /*const roles = await Role.findAll({
+          where: {
+            status: true,
+          },
+        });*/
+    const typeptransport = await TransportTypeDB.findAll();
     return {
-      message: `C de Rol exitoso`,
+      message: `tipo de transporte conseguido`,
       status: 200,
       data: {
-        roles,
+        typeptransport,
       },
     };
   } catch (error) {
@@ -26,26 +26,23 @@ export const getAll = async () => {
   }
 };
 
-
-
 export const getOne = async (id: number) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.findOne({ where: { id } }); // Busca el proyecto con título 'Mi Título'
-    if (role === null) {
+    const typetransport = await TransportTypeDB.findOne({ where: { id } }); // Busca el proyecto con título 'Mi Título'
+    if (typetransport === null) {
       console.log("No encontrado");
       return {
-        message: `Role no encontrado`,
+        message: `Tipo de Transporte no encontrado`,
         status: 404,
-        data: {
-        },
+        data: {},
       };
     } else {
       return {
-        message: `Role encontrado`,
+        message: `Tipo de Transporte encontrado`,
         status: 200,
         data: {
-          role,
+          typetransport,
         },
       };
     }
@@ -57,18 +54,19 @@ export const getOne = async (id: number) => {
     };
   }
 };
-export const create = async (data: RoleInterface) => {
+
+export const create = async (data: TransportTypeInterface) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.create({
+    const typetransport = await TransportTypeDB.create({
       ...data,
     });
 
     return {
-      message: `Creacion de Rol exitoso`,
+      message: `Creacion de Tipo de Transporte exitoso`,
       status: 200,
       data: {
-        role,
+        typetransport,
       },
     };
   } catch (error) {
@@ -80,10 +78,10 @@ export const create = async (data: RoleInterface) => {
   }
 };
 
-export const update = async (id: number, data: RoleInterface) => {
+export const update = async (id: number, data: TransportTypeInterface) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.update(
+    const typetransport = await TransportTypeDB.update(
       {
         ...data,
       },
@@ -96,10 +94,10 @@ export const update = async (id: number, data: RoleInterface) => {
     );
 
     return {
-      message: `Actualización del Rol exitoso`,
+      message: `Actualización del Tipo de Transporte exitoso`,
       status: 200,
       data: {
-        role,
+        typetransport,
       },
     };
   } catch (error) {
@@ -110,10 +108,11 @@ export const update = async (id: number, data: RoleInterface) => {
     };
   }
 };
-export const deleted = async (id: number, data: RoleInterface) => {
+
+export const deleted = async (id: number, data: TransportTypeInterface) => {
   try {
     //consultas a la base de datos van aca
-    const role = await RoleDB.update(
+    const typetransport = await TransportTypeDB.update(
       {
         status: false,
         deletedAt: new Date(),
@@ -127,13 +126,14 @@ export const deleted = async (id: number, data: RoleInterface) => {
     );
 
     return {
-      message: `Eliminación del Rol exitoso`,
+      message: `Eliminación de Tipo de Transporte exitoso`,
       status: 200,
       data: {
-        role,
+        typetransport,
       },
     };
   } catch (error) {
+    console.log(error);
     return {
       message: `Contact the administrator: error`,
       status: 500,

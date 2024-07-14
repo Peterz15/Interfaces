@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { create, deleted, getAll, getOne, update } from "../services/locations.service";
-export class LocationController {
+import { create, deleted, readAll, readOne, update } from "../services/services.service";
+export class ServiceController {
   constructor() {}
 
   all = async (req: Request, res: Response) => {
-    const { status, message, data } = await getAll();
+    const { status, message, data } = await readAll();
     return res.status(status).json({
       message,
       data,
@@ -13,20 +13,20 @@ export class LocationController {
 
   one = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await getOne(parseInt(id) as number);
+    const { status, message, data } = await readOne(parseInt(id) as number);
     return res.status(status).json({
       message,
       data,
     });
   };
-  createLocations = async (req: Request, res: Response) => {
+  createRole = async (req: Request, res: Response) => {
     const { status, message, data } = await create(req.body);
     return res.status(status).json({
       message,
       data,
     });
   };
-  updateLocations = async (req: Request, res: Response) => {
+  updateRole = async (req: Request, res: Response) => {
     const {id}=req.params
     const { status, message, data } = await update(parseInt(id) as number,req.body);
     return res.status(status).json({
@@ -35,7 +35,7 @@ export class LocationController {
     });
   };
 
-  deleteLocations = async (req: Request, res: Response) => {
+  deleteRole = async (req: Request, res: Response) => {
     const {id}=req.params
     const { status, message, data } = await deleted(parseInt(id) as number,req.body);
     return res.status(status).json({
