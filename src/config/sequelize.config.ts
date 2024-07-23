@@ -1,6 +1,5 @@
 import { Sequelize } from "sequelize";
 
-
 import {
   RoleModel,
   UserModel,
@@ -10,6 +9,7 @@ import {
   AttractionsStatusModel,
   ProductModel,
   ConceptModel,
+  DepartmentModel,
   InventoryModel,
   ProductCategoryModel,
   CustomerModel,
@@ -18,7 +18,8 @@ import {
   StaffModel,
   TableModel,
   TableTypeModel,
-  TransportTypeModel
+  TransportTypeModel,
+  
 } from "../models";
 
 const dbName: string | undefined = process.env.DATABASE_NAME
@@ -55,6 +56,7 @@ const TableDB = db.define('tables',TableModel);
 const TableTypeDB = db.define("table_types", TableTypeModel);
 const TransportTypeDB = db.define('transport_types',TransportTypeModel);
 const ProductDB = db.define('products',ProductModel);
+const DepartmentModelDB = db.define('products',DepartmentModel);
 // Relaciones
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
 UserDB.belongsTo(RoleDB, { foreignKey: "role_id" });
@@ -88,5 +90,6 @@ export {
   TableTypeDB,
   TransportTypeDB,
   ProductDB,
+  DepartmentModelDB,
   db,
 };

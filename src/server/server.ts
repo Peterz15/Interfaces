@@ -17,7 +17,8 @@ import {
   tableTypeRoute,
   roomTypeRoute,
   transportTypeRoute,
-  productRoute
+  productRoute,
+  departmentRoute
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
@@ -36,6 +37,7 @@ export class Server {
       concepts: this.pre + "/concepts",
       customers: this.pre + "/customers",
       inventories: this.pre + "/inventories",
+      departments: this.pre + "/departments",
       locations: this.pre + "/locations",
       product_categories: this.pre + "/product_categories",
       products: this.pre+ "/products",
@@ -47,7 +49,7 @@ export class Server {
       tables: this.pre + "/tables",
       table_types: this.pre + "/table_types",
       transport_types: this.pre+ "/transport_types",
-      users: this.pre + "/users",
+      users: this.pre + "/users"
 
     };
 
@@ -67,6 +69,7 @@ export class Server {
     this.app.use(this.paths.attractions_statuses, attractionStatusRoute);
     this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.customers, customerRoute);
+    this.app.use(this.paths.departments, departmentRoute);
     this.app.use(this.paths.inventories, inventoryRoute);
     this.app.use(this.paths.locations, locationRoute);
     this.app.use(this.paths.product_categories, productCategoryRoute);

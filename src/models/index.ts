@@ -4,6 +4,7 @@ export * from './city.model';
 export * from './customer.model';
 export * from './country.model';
 export * from './concept.model';
+export * from './department.model';
 export * from './inventory.model';
 export * from './locations.model';
 export * from './product.model';
