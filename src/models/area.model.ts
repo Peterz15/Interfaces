@@ -1,23 +1,26 @@
 import { DataTypes } from "sequelize";
 
-const RoleModel = {
+const AreaModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.STRING(25),
+    type: DataTypes.STRING(50),
     allowNull: false,
     unique: true,
+  },
+  location_id: {
+    type: DataTypes.INTEGER,
   },
   deletedAt: {
     type: DataTypes.DATE,
   },
   status: {
     type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  }, 
+    default: true,
+  },
 };
 
-export { RoleModel };
+export { AreaModel };
